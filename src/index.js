@@ -8,7 +8,7 @@ var path = require('path');
 var massive = require('massive');
 var https = require('https');
 
-var config = require('./../config.js')
+var config = require('../config.js')
 
 
 
@@ -29,7 +29,7 @@ var massiveServer = massive.connectSync({
 app.set('db', massiveServer); //
 var db = app.get('db');
 
-var UserController = require('./../users/userCtrl.js')
+var UserController = require('../users/userCtrl.js')
 // var UserController = require('./../users/uCtrl.js')
 
 
@@ -48,7 +48,7 @@ app.use(express.static(__dirname + '/public'));
 var dbSetup = require('../users/dbSetup');
 // dbSetup.run();
 
-var UserCtrl = require('../users/UserCtrl');
+var UserCtrl = require('../users/userCtrl.js');
 
 var passport = require('./../users/passport.js');
 
