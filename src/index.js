@@ -23,7 +23,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 var massiveUri = config.MASSIVE_URI;
-console.log(massiveUri);
 var massiveServer = massive.connectSync({
 	connectionString: massiveUri
 });
@@ -119,8 +118,8 @@ app.get('/places', function(req, res) {
 // app.listen(port, function() {
 // 	console.log('Listening on port ' + port);
 // });
-
-app.listen(3000, function() {
+var port = process.env.PORT || 3000;
+app.listen(PORT, function() {
   console.log('listening on port 3000');
 
 })

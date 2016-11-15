@@ -1,7 +1,7 @@
 version: '2'
 services:
   postgres:
-    image: postgres:9.6
+    image: willaustin/postgres-parkfinder:1.0
     environment:
       - POSTGRES_PASSWORD=test
     volumes:
