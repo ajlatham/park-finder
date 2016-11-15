@@ -23,6 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 var massiveUri = config.MASSIVE_URI;
+console.log(massiveUri);
 var massiveServer = massive.connectSync({
 	connectionString: massiveUri
 });
@@ -39,11 +40,11 @@ var config = require('../config');
 
 app.use(express.static(__dirname + '/public'));
 
-var massiveInstance = massive.connectSync({
-  connectionString: config.MASSIVE_URI
-});
-app.set('db', massiveInstance);
-var db = app.get('db');
+// var massiveInstance = massive.connectSync({
+//   connectionString: config.MASSIVE_URI
+// });
+// app.set('db', massiveInstance);
+// var db = app.get('db');
 
 var dbSetup = require('../users/dbSetup');
 // dbSetup.run();
@@ -114,13 +115,13 @@ app.get('/places', function(req, res) {
 });
 
 
-var port = config.PORT;
-app.listen(port, function() {
-	console.log('Listening on port ' + port);
-});
+// var port = config.PORT;
+// app.listen(port, function() {
+// 	console.log('Listening on port ' + port);
+// });
 
 app.listen(3000, function() {
-  console.log('linstening on port 3000');
+  console.log('listening on port 3000');
 
 })
 
