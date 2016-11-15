@@ -8,6 +8,7 @@ services:
       - ./data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
+    restart: always
     # expose:
       # - "5433"
   web:
@@ -26,3 +27,4 @@ services:
       - PGHOST=postgres
     depends_on:
       - postgres
+    restart: always

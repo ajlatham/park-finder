@@ -119,7 +119,7 @@ app.get('/places', function(req, res) {
 // 	console.log('Listening on port ' + port);
 // });
 var port = process.env.PORT || 3000;
-app.listen(PORT, function() {
+app.listen(port, function() {
   console.log('listening on port 3000');
 
 })
