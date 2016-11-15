@@ -1,6 +1,6 @@
  // INITILIZE APP
 // ============================================================
-var app = angular.module("parks", []);
+var app = angular.module("parks", ["ui.router"]);
 
 // CONFIG
 // ============================================================
@@ -10,36 +10,58 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // ============================================================
   $stateProvider
 
-    // HOME STATE
+
     .state('home', {
-      url: '/',
-      templateUrl: './app/routes/home/homeTmpl.html',
+      url: '/home',
+      templateUrl: './home/homeTempl.html',
       controller: 'homeCtrl'
     })
 
 
-    // HOME STATE
-    .state('state', {
-      url: '/state',
-      templateUrl: './app/routes/home/homeTmpl.html',
-      controller: 'stateCtrl'
+    .state('parks', {
+      url: '/community',
+      templateUrl: './community/community.html',
+      controller: 'communityCtrl'
     })
 
 
-    // HOME STATE
+
     .state('amusement', {
       url: '/amusement',
-      templateUrl: './app/routes/home/homeTmpl.html',
+      templateUrl: './amusement/amusement.html',
       controller: 'amusementCtrl'
     })
 
 
-    // HOME STATE
-    .state('community', {
-      url: '/community',
-      templateUrl: './app/routes/home/homeTmpl.html',
-      controller: 'communityCtrl'
-    });
+
+    .state('state', {
+      url: '/state',
+      templateUrl: './state/state.html',
+      controller: 'stateCtrl'
+    })
+
+
+
+    .state('login', {
+      url: '/login',
+      templateUrl: './login/login.html',
+      controller: 'loginCtrl'
+
+      // resolve: {
+      // 				user: function(loginService, $state) {
+      // 					return loginService.getCurrentUser()
+      // 						.then(function(response) {
+      // 							if (!response.data)
+      // 								$state.go('login');
+      // 							return response.data;
+      // 						})
+      // 						.catch(function(err) {
+      // 							$state.go('login');
+      // 						});
+      // 				}
+      // 			}
+});
+
 
 
 

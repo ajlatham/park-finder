@@ -1,168 +1,57 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="parks">
+<head>
 
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/amusement/amusementStyle.css">
-    <link rel="stylesheet" href="/navbar/navStyle.css">
-    <link rel="stylesheet" href="/state/stateStyles.css">
-    <link rel="stylesheet" href="/home/homeStyles.css">
-
-    <style>
-      #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
-    <style>
-          /* Always set the map height explicitly to define the size of the div
-           * element that contains the map. */
-          #map {
-            height: 100%;
-          }
-          /* Optional: Makes the sample page fill the window. */
-          html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-          }
-          .controls {
-            margin-top: 10px;
-            border: 1px solid transparent;
-            border-radius: 2px 0 0 2px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            height: 32px;
-            outline: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-          }
-
-          #pac-input {
-            background-color: #fff;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 12px;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 300px;
-          }
-
-          #pac-input:focus {
-            border-color: #4d90fe;
-          }
-
-          .pac-container {
-            font-family: Roboto;
-          }
-
-          #type-selector {
-            color: #fff;
-            background-color: #4d90fe;
-            padding: 5px 11px 0px 11px;
-          }
-
-          #type-selector label {
-            font-family: Roboto;
-            font-size: 13px;
-            font-weight: 300;
-          }
-          #target {
-            width: 345px;
-          }
-        </style>
-  </head>
-  <body>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="/home/homeStyles.css">
+<link rel="stylesheet" href="/amusement/amusementStyle.css">
+<link rel="stylesheet" href="/community/communityStyle.css">
+<link rel="stylesheet" href="/navbar/navStyle.css">
+<link rel="stylesheet" href="/state/state.css">
+<link rel="stylesheet" href="/login/login.css">
 
 
-View example (place-search.html)
-
-<h3>My Google Maps Demo</h3>
-<div id="map"></div>
-<script>
-  function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: uluru
-    });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
-    });
-  }
-</script>
-
-<script>
-function initAutocomplete() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
-        zoom: 13,
-        mapTypeId: 'roadmap'
-      });
-      var input = document.getElementById('pac-input');
-      var searchBox = new google.maps.places.searchBox(input);
-              map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-              map.addListener('bounds_changed', function() {
-                        searchBox.setBounds(map.getBounds());
-                      });
-      var markers = [];
-      searchBox.addListener('places_changed', function() {
-                var places = searchBox.getPlaces();
-
-                if (places.length == 0) {
-                  return;
-                }
-                markers.forEach(function(marker) {
-                            marker.setMap(null);
-                          });
-                          markers = [];
-                          var bounds = new google.maps.LatLngBounds();
-                                    places.forEach(function(place) {
-                                      if (!place.geometry) {
-                                        console.log("Returned place contains no geometry");
-                                        return;
-                                      }
-                                      var icon = {
-                                        url: place.icon,
-                                        size: new google.maps.Size(71, 71),
-                                        origin: new google.maps.Point(0, 0),
-                                        anchor: new google.maps.Point(17, 34),
-                                        scaledSize: new google.maps.Size(25, 25)
-                                      };
-                                      markers.push(new google.maps.Marker({
-                                                    map: map,
-                                                    icon: icon,
-                                                    title: place.name,
-                                                    position: place.geometry.location
-                                                  }));
-
-                                                  if (place.geometry.viewport) {
-                                                    // Only geocodes have viewport.
-                                                    bounds.union(place.geometry.viewport);
-                                                  } else {
-                                                    bounds.extend(place.geometry.location);
-                                                  }
-                                                });
-                                                map.fitBounds(bounds);
-                                              });
-                                            }
-
-
-</script>
+</head>
+<body>
 
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuUGIVkK95i5NaprW7UvpsQVCB06xhb7w&callback=initAutocomplete"
-                 async defer></script>
+<nav-bar></nav-bar>
+
+<ui-view></ui-view>
+
+<api-dir></api-dir>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuUGIVkK95i5NaprW7UvpsQVCB06xhb7w&libraries=places" async defer></script>
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script src="/app.js"></script>
+<script src="/navBar/navBarDir.js"></script>
+<script src="/navBar/navBarCtrl.js"></script>
+<script src="/home/homeCtrl.js"></script>
+<script src="/community/communityService.js"></script>
+<script src="/community/communityCtrl.js"></script>
+<script src="/amusement/amusementService.js"></script>
+<script src="/amusement/amusementCtrl.js"></script>
+<script src="/state/stateService.js"></script>
+<script src="/state/stateCtrl.js"></script>
+<script src="/login/loginService.js"></script>
+<script src="/login/loginCtrl.js"></script>
 
 
 
 
-
-  </body>
+</body>
 </html>

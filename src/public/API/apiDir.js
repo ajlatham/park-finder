@@ -3,7 +3,10 @@
 angular.module("parks").directive('apiDir', function() {
   return {
     restrict: 'EA',
-    templateUrl: './app/directives/some/someTmpl.html',
-    controller: 'someCtrl'
+    templateUrl: './API/apiIndex.html',
+    controller: 'apiCtrl',
+scope:{
+parkType:"="
+}
   };
 });

@@ -1,0 +1,11 @@
+.image-resonsive {
+  background: 	url("../../images/park1.jpeg") no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+.textbox1 {
+  border: 1px blue;
+  background-color: lightgray;
+  text-align: center;
+}

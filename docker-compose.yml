@@ -1,22 +1,28 @@
-version: '2'
-services:
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=test
-    volumes:
-      - ./data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
-  web:
-    image: node:6.9
-    volumes:
-      - ./:/usr/src/app
-    working_dir: /usr/src/app
-    command: npm run gulp
-    ports:
-      - "3000:3000"
-    links:
-      - mysql
+# version: '2'
+# services:
+#   postgres:
+#     image: postgres:9.6
+#     environment:
+#       - POSTGRES_PASSWORD=test
+#     volumes:
+#       - ./data:/var/lib/postgresql/data
+#     ports:
+#       - "5433:5432"
+#     expose:
+#       - "5433"
+#   web:
+#     image: node:6.9
+#     volumes:
+#       - ./:/usr/src/app
+#     working_dir: /usr/src/app
+#     command: npm start
+#     ports:
+#       - "3000:3000"
+#     links:
+#       - postgres
+#     environment:
+#       - PGUSER=postgres
+#       - PGPASSWORD=test
+#       - PGHOST=postgres
+#       - PGDATABASE=personalproject
+#       - PGPORT=5433
